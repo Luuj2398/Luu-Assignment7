@@ -1,30 +1,26 @@
+from helpers import getNum
+def getRainfallData():
+    result = []
+    months = ["April", "May", "June", "July"]
+    for month in months:
+        question = "Enter " + month +"'s rainfall total:"
+        result.append(getNum(question, 0.0, 100.0))
+    return result
+def getSum(rainfall):
+    sum = 0
+    for num in rainfall:
+        sum += num
+    return sum
+
+def getAverage(sum, count):
+     return sum / count
+
 def main():
-    monthes = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
-    amount_list=[]
-    total=0
-    
-    print("The total rainfall for each of 12 months.")
-
-    for month in monthes:
-        month_amount=float(input(month +": ") )
-        amount_list.append(month_amount)
-
-    for amount in amount_list:
-        total+=amount
-
-    print("The total rainfall for the year",total)
-    print("The avarage monthly rainfall",format(total/12,".2f"))
-
-    max_rainfall_month = max(amount_list)
-    max_index = amount_list.index(max_rainfall_month)
-    max_month = monthes[max_index]
-
-    min_rainfall_month = min(amount_list)
-    min_index = amount_list.index(min_rainfall_month)
-    min_month = monthes[min_index]
-
-    print("The month with highest rainfall", max_month)
-    print("The month with lowest rainfall", min_month)
-    
-    
+    rainfall = getRainfallData()
+    total = getSum(rainfall)
+    average = getAverage(total, len(rainfall))
+    print ("The total rainfall is", total, "inches")
+    print ("The average monthly rainfall is", average, "inches")
+    print ("The most rainfall recorded in a month was", max(rainfall), "inches")
+    print ("The lowest rainfall recorded in a month was", min(rainfall), "inches")
 main()
